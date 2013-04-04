@@ -11,7 +11,7 @@
   {
       scope: 'world',
 
-      el: $('#container1'),
+      el: $('#map'),
 
       geography_config: 
       { 
@@ -23,9 +23,12 @@
       
       fills: 
       {
-        'high': '#000061',
-        'medium': '#306596',
-        'low': '#667FAF',
+        'one': '#F0C2E0',
+        'two': '#E699CC',
+        'three': '#DB70B8',
+        'four': '#D147A3',
+        'five': '#B82E8A',
+        'six': '#8F246B',
         defaultFill: '#EDDC4E'
       },
 
