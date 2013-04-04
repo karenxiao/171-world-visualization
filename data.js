@@ -15,10 +15,10 @@ for (var i = 0; i < lines.length; i++)
 }
 
 var numYears = 16;
-var numCountries = lines.length/numYears;
+var numCountries = 34;
 
 var data = new Array();
-for (var i = 0; i < numCountries-1; i++)
+for (var i = 0; i < numCountries; i++)
 {
     data[i] = new Array();
     data[i]["country"] = lines[i*numYears+1][0];
@@ -59,12 +59,12 @@ output = {
 */
 
 var output = new Array();
-for (var i = 1; i < data.length; i++)
+for (var i = 0; i < data.length; i++)
 {
     var country = data[i]["code"];
     output[country] = new Array();
-
     var gdp = data[i][2010]["gdp"];
+    
     if (gdp < 10000)
     {
         output[country].fillKey = "one";    
@@ -91,4 +91,6 @@ for (var i = 1; i < data.length; i++)
     }
     
     output[country]["gdp"] = gdp;
+    output[country]["name"] = data[i]["country"];
+    output[country]["unemployment"] = data[i][2010]["unemployment"];
 }

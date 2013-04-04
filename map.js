@@ -18,7 +18,7 @@
         highlightBorderColor: '#EDDC4E',
         highlightFillColor: '#CC4731',
         highlightOnHover: true,
-        popupTemplate: _.template('<div class="hoverinfo"> <strong><%= geography.properties.name %></strong> <% if (data.index) { %><hr/>  Education Index: <%= data.index %> <% } %> <% if (data.rank) { %><hr/>  Worldwide Rank: <%= data.rank %> <% } %> </div>')
+        popupTemplate: _.template('<div class="hoverinfo"> <strong><%= geography.properties.name %></strong> <% if (data.gdp) { %><hr/>  GDP per capita: <%= data.gdp %> <% } %> <% if (data.unemployment) { %><hr/>  Unemployment Rate: <%= data.unemployment %> <% } %> </div>')
       },
       
       fills: 
