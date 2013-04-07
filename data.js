@@ -35,36 +35,17 @@ for (var i = 0; i < numCountries; i++)
         }
     }
 }
-/*
-var output = {};
-output = {
-        "USA": {
-            "fillKey": "high",
-            "electoralVotes": 5
-        },
-        "MEX": {
-            "fillKey": "low",
-            "electoralVotes": 5
-        },
-        "CAN": {
-            "fillKey": "low",
-            "electoralVotes": 5
-        },
-        "AUS": {
-            "fillKey": "low",
-            "electoralVotes": 5
-        }
 
- };
-*/
+function generateOutput(selectedYear)
+{
 
 var output = new Array();
 for (var i = 0; i < data.length; i++)
 {
     var country = data[i]["code"];
     output[country] = new Array();
-    var gdp = data[i][2010]["gdp"];
-    
+    var gdp = data[i][selectedYear]["gdp"];
+
     if (gdp < 10000)
     {
         output[country].fillKey = "one";    
@@ -92,5 +73,8 @@ for (var i = 0; i < data.length; i++)
     
     output[country]["gdp"] = gdp;
     output[country]["name"] = data[i]["country"];
-    output[country]["unemployment"] = data[i][2010]["unemployment"];
+    output[country]["unemployment"] = data[i][selectedYear]["unemployment"];
+    output[country]["unemployment"] = data[i][selectedYear]["unemployment"];
+}
+return output;
 }

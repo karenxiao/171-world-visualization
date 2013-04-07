@@ -6,12 +6,33 @@
 * 
 * implements an interactive world map using the DataMaps add-on
 **************************************************************/
-  
+
+var state = 'off';
+
+var mapElement = document.getElementById('map');
+var child = document.getElementById('child');
+
+if (state == 'off')
+{
+  child.innerHTML = 'Select a year to display the visualization.';
+}
+
+function renderMap()
+{  
+  state = 'on';
+  child = document.getElementById('child');
+  mapElement.removeChild(child);
+  var newChild = document.createElement('child');
+  mapElement.appendChild(newChild);
+  newChild.id = "child"
+
+  var year = document.getElementById('year').value;
+
   var map = new Map(
   {
       scope: 'world',
 
-      el: $('#map'),
+      el: $('#child'),
 
       geography_config: 
       { 
@@ -32,8 +53,9 @@
         defaultFill: '#EDDC4E'
       },
 
-      data: output,
+      data: generateOutput(year),
     });
 
-   map.render();
+  map.render();
+}
 
