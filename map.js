@@ -41,21 +41,21 @@ function renderMap()
 
       geography_config: 
       { 
-        highlightBorderColor: '#EDDC4E',
-        highlightFillColor: '#CC4731',
+        highlightBorderColor: '#1C1CFF',
+        highlightFillColor: '#3B63F3',
         highlightOnHover: true,
         popupTemplate: _.template('<div class="hoverinfo"> <strong><%= geography.properties.name %></strong> <% if (data.gdp) { %><hr/>  GDP per capita: <%= data.gdp %> <% } %> <% if (data.unemployment) { %><hr/>  Unemployment Rate: <%= data.unemployment %> <% } %> </div>')
       },
       
       fills: 
       {
-        'one': '#F0C2E0',
-        'two': '#E699CC',
-        'three': '#DB70B8',
-        'four': '#D147A3',
-        'five': '#B82E8A',
-        'six': '#8F246B',
-        defaultFill: '#EDDC4E'
+        'one': '#FFEBD6',
+        'two': '#F5CBAE',
+        'three': '#EBA988',
+        'four': '#DF8365',
+        'five': '#B44E3A',
+        'six': '#515151',
+        defaultFill: '#515151'
       },
 
       data: generateOutput(year),

@@ -6,14 +6,14 @@ body
 
 #top
 {
-	float: left;
 	width: 1000px;
+	padding: 10px;
 }
 
 #bottom
 {
-	float: left;
 	width: 1000px;
+	padding: 10px;
 }
 #map
 {
