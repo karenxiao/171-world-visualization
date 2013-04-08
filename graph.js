@@ -9,14 +9,24 @@
 
 var graphElement = document.getElementById('graph');
 var child = document.getElementById('graph-child');
+var output = generateOutput(1995);
 
-function displayGraphText()
+/***********************
+* generatePoints()
+* generates data points for country selected
+************************/
+function generatePoints(country)
 {
-	var description = 'In contrast, the graph displayed above is intended to allow for comparisons within a particular nation of GDP per capita trends domestically over time.';
-	var string = 'To begin, choose a country.'
-	child.innerHTML = description + '<br/><br/>' + string;
+	var points = new Array();
+	for (var year = 0; year < numYears; year++)
+	{
+		output = generateOutput(1995+year);
+
+		actualYear = 1995+year;
+		points[year] = {"year": d3.time.format("%Y").parse(actualYear.toString()), "gdp": output[country]["gdp"]};
+	} 
+	return points;
 }
-displayGraphText();
 
 /***********************
 * graph()
@@ -33,24 +43,18 @@ graphElement.appendChild(newChild);
 newChild.id = "graph-child"
 
 // get graph data
-var country = document.getElementById("country").value;
-if (country == '')
+var country1 = document.getElementById("country1").value;
+var country2 = document.getElementById("country2").value; 
+if (country1 == '' || country2 == '')
 {
-	displayGraphText();
 	return;
 }
 
-var points = new Array();
-for (var year = 0; year < numYears; year++)
-{
-	var output = generateOutput(1995+year);
-
-	actualYear = 1995+year;
-	points[year] = {"year": d3.time.format("%Y").parse(actualYear.toString()), "gdp": output[country]["gdp"]};
-}    
+var points1 = generatePoints(country1);
+var points2 = generatePoints(country2);
 
 // render title
-document.getElementById('graph-title').innerHTML = "GDP per capita from years 1995-2010: " + output[country]["name"];
+document.getElementById('graph-title').innerHTML = "GDP per capita: " + output[country1]["name"] + ', ' + output[country2]["name"];
 
 // render graph
 var margin = {top: 20, right: 40, bottom: 50, left: 80},
@@ -81,8 +85,8 @@ var svg = d3.select("#graph-child").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  x.domain(d3.extent(points, function(d) { return d["year"]; }));
-  y.domain(d3.extent(points, function(d) { return d["gdp"]; }));
+  x.domain(d3.extent(points1, function(d) { return d["year"]; }));
+  y.domain([900, 50000]);
 /*
 console.log(d3.extent(points, function(d) { return d["gdp"]; }));
 console.log(d3.max(points));
@@ -105,8 +109,13 @@ console.log(d3.min(points));
       .text("GDP per capita (USD)");
 
   svg.append("path")
-      .datum(points)
-      .attr("class", "line")
+      .datum(points1)
+      .attr("class", "line1")
+      .attr("d", line);
+
+  svg.append("path")
+      .datum(points2)
+      .attr("class", "line2")
       .attr("d", line);
 
 }

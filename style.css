@@ -13,6 +13,7 @@ body
 #bottom
 {
 	width: 1000px;
+	height: 600px;
 	padding: 10px;
 }
 #map
@@ -52,8 +53,14 @@ body
   stroke-width: .5px;
 }
 
-.line {
+.line1 {
   stroke: #3399CC;
+  stroke-width: 1px;
+  fill: none;
+}
+
+.line2 {
+  stroke: #A00000;
   stroke-width: 1px;
   fill: none;
 }

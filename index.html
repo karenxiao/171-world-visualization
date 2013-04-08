@@ -30,16 +30,21 @@
             <option value="2009">2009</option>
             <option value="2010">2010</option>  
           </select>
-          <div class="visualization-title" id="map-title"></div>
+          <div class="visualization-title" id="map-title">Global GDP per capita and Unemployment Data</div>
           <br><br>
+          <div class="text">
+            This map is a visualization of global GDP trends over time. We hoped to be able to observed, primarily within OECD nations, the trend of GDP concentrations over the 15 years from 1995 - 2010. The value of this trend understanding comes from being able to see which nations have developed more rapidly comparatively, and if there are concentrations of development amongst any of these nations. The color progression visually highlights the progression, from the lightest (lowest GDP per capita), to darkest (highest GDP per capita).
+          </div>
           <div id="map">
             <div id="child"></div>
+          </div>
+          <div class="key">
           </div>
         </div>
         <hr>
         <div id="bottom">
-          <div class="text">Display visualization for country:</div>
-          <select id="country" onchange="graph()">
+          <span class="text">Display visualization for country:</span>
+          <select id="country1" onchange="graph()">
             <option value="">Select Country</option>
             <option value="AUS">Australia</option>
             <option value="AUT">Austria</option>
@@ -82,8 +87,54 @@
             <option value="RUS">Russia</option>
             <option value="ZAF">South Africa</option> 
           </select>
+          <select id="country2" onchange="graph()">
+            <option value="">Select Country</option>
+            <option value="AUS">Australia</option>
+            <option value="AUT">Austria</option>
+            <option value="BEL">Belgium</option>
+            <option value="CAN">Canada</option>
+            <option value="CHL">Chile</option>
+            <option value="CZE">Czech Republic</option>
+            <option value="DNK">Denmark</option>
+            <option value="EST">Estonia</option>
+            <option value="FIN">Finland</option>
+            <option value="FRA">France</option>
+            <option value="DEU">Germany</option>
+            <option value="GRC">Greece</option>
+            <option value="HUN">Hungary</option>
+            <option value="ISL">Iceland</option>
+            <option value="IRL">Ireland</option>
+            <option value="ISR">Israel</option>
+            <option value="ITA">Italy</option>
+            <option value="JPN">Japan</option>
+            <option value="PRK">Korea</option>
+            <option value="LUX">Luxembourg</option>
+            <option value="MEX">Mexico</option>
+            <option value="NLD">Netherlands</option>
+            <option value="NZL">New Zealand</option>
+            <option value="NOR">Norway</option>
+            <option value="POL">Poland</option>
+            <option value="PRT">Portugal</option>
+            <option value="SVK">Slovak Republic</option>
+            <option value="SVN">Slovenia</option>
+            <option value="ESP">Spain</option>
+            <option value="SWE">Sweden</option>
+            <option value="CHE">Switzerland</option>
+            <option value="TUR">Turkey</option>
+            <option value="GBR">United Kingdom</option>
+            <option value="USA">United States</option>
+            <option value="BRA">Brazil</option>
+            <option value="CHN">China</option>
+            <option value="IND">India</option>
+            <option value="IDN">Indonesia</option>
+            <option value="RUS">Russia</option>
+            <option value="ZAF">South Africa</option> 
+          </select>
+          <span class="visualization-title" id="graph-title">GDP per capita from years 1995-2010</span>
           <br><br>
-          <div class="visualization-title" id="graph-title"></div>
+          <div class="text">
+              In contrast, the graph displayed below is intended to allow for comparisons within a particular nation of GDP per capita trends over a period of time (from 1995-2010).
+          </div>
           <div id="graph">
             <div id="graph-child"></div>
           </div>
