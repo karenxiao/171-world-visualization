@@ -7,15 +7,16 @@
 * implements an interactive world map using the DataMaps add-on
 **************************************************************/
 
-var state = 'off';
-
 var mapElement = document.getElementById('map');
 var child = document.getElementById('child');
 
-if (state == 'off')
+function displayText()
 {
-  child.innerHTML = 'To begin, select a year to display the visualization.';
+  var description = 'This map is a visualization of global GDP trends over time. We hoped to be able to observed, primarily within OECD nations, the trend of GDP concentrations over the 15 years from 1995 - 2010. The value of this trend understanding comes from being able to see which nations have developed more rapidly comparatively, and if there are concentrations of development amongst any of these nations. The color progression visually highlights the progression, from the lightest (lowest GDP per capita), to darkest (highest GDP per capita).';
+  var string = 'To begin, choose a year.'
+  child.innerHTML = description + '<br/><br/>' + string;
 }
+displayText();
 
 /***********************
 * renderMap()
@@ -23,7 +24,8 @@ if (state == 'off')
 ************************/
 function renderMap()
 {  
-  state = 'on';
+
+  // create element to hold map
   child = document.getElementById('child');
   mapElement.removeChild(child);
   var newChild = document.createElement('child');
@@ -31,7 +33,13 @@ function renderMap()
   newChild.id = "child"
 
   var year = document.getElementById('year').value;
+  if (year == '')
+  {
+    displayGraphText();
+    return;
+  }
   document.getElementById('map-title').innerHTML = "Global GDP per capita and Unemployment Data: " + year;
+  
   //render map
   var map = new Map(
   {
@@ -44,7 +52,7 @@ function renderMap()
         highlightBorderColor: '#1C1CFF',
         highlightFillColor: '#3B63F3',
         highlightOnHover: true,
-        popupTemplate: _.template('<div class="hoverinfo"> <strong><%= geography.properties.name %></strong> <% if (data.gdp) { %><hr/>  GDP per capita: <%= data.gdp %> <% } %> <% if (data.unemployment) { %><hr/>  Unemployment Rate: <%= data.unemployment %> <% } %> </div>')
+        popupTemplate: _.template('<div class="hoverinfo"> <strong><%= geography.properties.name %></strong> <% if (data.gdp) { %><hr/>  GDP per capita (USD): <%= data.gdp %> <% } %> <% if (data.unemployment) { %><hr/>  Unemployment Rate: <%= data.unemployment %> <% } %> </div>')
       },
       
       fills: 

@@ -81,14 +81,3 @@ function generateOutput(selectedYear)
 	}
 	return output;
 }
-
-/*
-var string = '';
-var d = generateOutput(1995);
-for (var i = 0; i < data.length; i++)
-{
-	string = string + '\n' + '\<option value\=\"' + data[i]["code"] + '\"\>' + data[i]["country"] + '\<\/option\>';
-}
-console.log(string);
-//document.getElementById('graph-title').innerHTMl = string;
-*/

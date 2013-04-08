@@ -7,11 +7,16 @@
 * creates a line graph using D3
 **************************************************************/
 
-var graphstate = 'off';
-
 var graphElement = document.getElementById('graph');
 var child = document.getElementById('graph-child');
 
+function displayGraphText()
+{
+	var description = 'In contrast, the graph displayed above is intended to allow for comparisons within a particular nation of GDP per capita trends domestically over time.';
+	var string = 'To begin, choose a country.'
+	child.innerHTML = description + '<br/><br/>' + string;
+}
+displayGraphText();
 
 /***********************
 * graph()
@@ -29,13 +34,19 @@ newChild.id = "graph-child"
 
 // get graph data
 var country = document.getElementById("country").value;
+if (country == '')
+{
+	displayGraphText();
+	return;
+}
+
 var points = new Array();
 for (var year = 0; year < numYears; year++)
 {
 	var output = generateOutput(1995+year);
 
 	actualYear = 1995+year;
-	points[year] = [d3.time.format("%Y").parse(actualYear.toString()), output[country]["gdp"]];
+	points[year] = {"year": d3.time.format("%Y").parse(actualYear.toString()), "gdp": output[country]["gdp"]};
 }    
 
 // render title
@@ -61,8 +72,8 @@ var yAxis = d3.svg.axis()
     .orient("left");
 
 var line = d3.svg.line()
-    .x(function(d) { return x(d[0]); })
-    .y(function(d) { return y(d[1]); });
+    .x(function(d) { return x(d["year"]); })
+    .y(function(d) { return y(d["gdp"]); });
 
 var svg = d3.select("#graph-child").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -70,18 +81,13 @@ var svg = d3.select("#graph-child").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+  x.domain(d3.extent(points, function(d) { return d["year"]; }));
+  y.domain(d3.extent(points, function(d) { return d["gdp"]; }));
 /*
-var parseDate = d3.time.format("%y").parse;
-
-var points2 = new Array();
-for (var i=0; i<points.length; i++)
-{
-  points2[i] = [parseDate(points[i][0].toString()), points[i][1]];
-}
+console.log(d3.extent(points, function(d) { return d["gdp"]; }));
+console.log(d3.max(points));
+console.log(d3.min(points));
 */
-
-  x.domain(d3.extent(points, function(d) { return d[0]; }));
-  y.domain(d3.extent(points, function(d) { return d[1]; }));
 
   svg.append("g")
       .attr("class", "xaxis")
@@ -96,7 +102,7 @@ for (var i=0; i<points.length; i++)
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("GDP per capita");
+      .text("GDP per capita (USD)");
 
   svg.append("path")
       .datum(points)
