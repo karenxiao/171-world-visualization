@@ -10,7 +10,7 @@
 var graphstate = 'off';
 
 var graphElement = document.getElementById('graph');
-var child = document.getElementById('grpah-child');
+var child = document.getElementById('graph-child');
 
 
 /***********************
@@ -36,15 +36,12 @@ for (var year = 0; year < numYears; year++)
 
 	actualYear = 1995+year;
 	points[year] = [actualYear, output[country]["gdp"]];
-	console.log(points[year]);
 }    
 
 // render graph
 var margin = {top: 20, right: 10, bottom: 30, left: 50},
-    width = 300 - margin.left - margin.right,
-    height = 200 - margin.top - margin.bottom;
-
-var parseDate = d3.time.format("%y").parse;
+    width = 400 - margin.left - margin.right,
+    height = 250 - margin.top - margin.bottom;
 
 var x = d3.scale.linear()
     .range([0, width]);
@@ -70,16 +67,26 @@ var svg = d3.select("#graph-child").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+/*
+var parseDate = d3.time.format("%y").parse;
+
+var points2 = new Array();
+for (var i=0; i<points.length; i++)
+{
+  points2[i] = [parseDate(points[i][0].toString()), points[i][1]];
+}
+*/
+
   x.domain(d3.extent(points, function(d) { return d[0]; }));
   y.domain(d3.extent(points, function(d) { return d[1]; }));
 
   svg.append("g")
-      .attr("class", "x axis")
+      .attr("class", "xaxis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
   svg.append("g")
-      .attr("class", "y axis")
+      .attr("class", "yaxis")
       .call(yAxis)
     .append("text")
       .attr("transform", "rotate(-90)")

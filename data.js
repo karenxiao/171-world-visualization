@@ -81,6 +81,7 @@ function generateOutput(selectedYear)
 	}
 	return output;
 }
+
 /*
 var string = '';
 var d = generateOutput(1995);

@@ -7,7 +7,7 @@ body
 #left
 {
 	float: left;
-	width: 960px;
+	width: 900px;
 }
 
 #right
@@ -16,8 +16,8 @@ body
 }
 #map
 {
-	width: 960px;
-	height: 500px;
+	width: 900px;
+	height: 450px;
 }
 
 #title
