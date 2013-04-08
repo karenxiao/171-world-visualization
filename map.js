@@ -31,7 +31,7 @@ function renderMap()
   newChild.id = "child"
 
   var year = document.getElementById('year').value;
-
+  document.getElementById('map-title').innerHTML = "Global GDP and Unemployment Data: " + year;
   //render map
   var map = new Map(
   {

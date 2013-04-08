@@ -9,9 +9,10 @@
         <div id="title">Growing Globally</div><br>
         <div id="subtitle">a visualization by Rachna Raina '13 and Karen Xiao '14</div>
         <hr>
-        <div id="left">
+        <div id="top">
           <span class="text">Display visualization for year:</span>
           <select id="year" onchange="renderMap()">
+            <option value="">Select Year</option>
             <option value="1995">1995</option>
             <option value="1996">1996</option>
             <option value="1997">1997</option>
@@ -29,14 +30,15 @@
             <option value="2009">2009</option>
             <option value="2010">2010</option>  
           </select>
-          <div id="text"></div>
+          <div class="visualization-title" id="map-title"></div>
           <div id="map">
             <div id="child"></div>
           </div>
         </div>
-        <div id="right">
+        <div id="bottom">
           <div class="text">Display GDP data over time for country:</div>
           <select id="country" onchange="graph()">
+            <option value="">Select Country</option>
             <option value="AUS">Australia</option>
             <option value="AUT">Austria</option>
             <option value="BEL">Belgium</option>
@@ -78,7 +80,7 @@
             <option value="RUS">Russia</option>
             <option value="ZAF">South Africa</option> 
           </select>
-          <div id="graph-title"></div>
+          <div class="visualization-title" id="graph-title"></div>
           <div id="graph">
             <div id="graph-child"></div>
           </div>

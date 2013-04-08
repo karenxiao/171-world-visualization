@@ -4,20 +4,21 @@ body
 	font-family: 'Century Gothic', 'Verdana', sans-serif;	
 }
 
-#left
+#top
 {
 	float: left;
-	width: 900px;
+	width: 1000px;
 }
 
-#right
+#bottom
 {
 	float: left;
+	width: 1000px;
 }
 #map
 {
-	width: 900px;
-	height: 450px;
+	width: 1000px;
+	height: 500px;
 }
 
 #title
@@ -31,7 +32,11 @@ body
 	color: gray;
 }
 
-
+.visualization-title
+{
+	float: right;
+	font-size: 20px;
+}
 .text
 {
 	font-size: 15px;

@@ -28,20 +28,23 @@ graphElement.appendChild(newChild);
 newChild.id = "graph-child"
 
 // get graph data
+var country = document.getElementById("country").value;
 var points = new Array();
 for (var year = 0; year < numYears; year++)
 {
-	var country = document.getElementById("country").value;
 	var output = generateOutput(1995+year);
 
 	actualYear = 1995+year;
 	points[year] = [actualYear, output[country]["gdp"]];
 }    
 
+// render title
+document.getElementById('graph-title').innerHTML = "GDP from years 1995-2010: " + output[country]["name"];
+
 // render graph
 var margin = {top: 20, right: 10, bottom: 30, left: 50},
-    width = 400 - margin.left - margin.right,
-    height = 250 - margin.top - margin.bottom;
+    width = 800 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 var x = d3.scale.linear()
     .range([0, width]);
