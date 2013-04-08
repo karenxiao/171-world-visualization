@@ -15,7 +15,7 @@ for (var i = 0; i < lines.length; i++)
 }
 
 var numYears = 16;
-var numCountries = 34;
+var numCountries = 40;
 
 var data = new Array();
 for (var i = 0; i < numCountries; i++)
@@ -36,45 +36,58 @@ for (var i = 0; i < numCountries; i++)
     }
 }
 
+/**********************
+* generateOutput()
+* formats output data 
+************************/
 function generateOutput(selectedYear)
 {
+	var output = new Array();
+	for (var i = 0; i < data.length; i++)
+	{
+	    var country = data[i]["code"];
+	    output[country] = new Array();
+	    var gdp = data[i][selectedYear]["gdp"];
 
-var output = new Array();
+	    if (gdp < 10000)
+	    {
+	        output[country].fillKey = "one";    
+	    }
+	    else if (gdp >= 10000 && gdp < 20000)
+	    {
+	        output[country].fillKey = "two";
+	    }
+	    else if (gdp >= 20000 && gdp < 30000)
+	    {
+	        output[country].fillKey = "three";
+	    }
+	    else if (gdp >= 30000 && gdp < 40000)
+	    {
+	        output[country].fillKey = "four";
+	    }
+	    else if (gdp >= 40000)
+	    {
+	        output[country].fillKey = "five";
+	    }
+	    else 
+	    {
+	        output[country].fillKey = "six";
+	    }
+	    
+	    output[country]["gdp"] = gdp;
+	    output[country]["name"] = data[i]["country"];
+	    output[country]["unemployment"] = data[i][selectedYear]["unemployment"];
+	    output[country]["unemployment"] = data[i][selectedYear]["unemployment"];
+	}
+	return output;
+}
+/*
+var string = '';
+var d = generateOutput(1995);
 for (var i = 0; i < data.length; i++)
 {
-    var country = data[i]["code"];
-    output[country] = new Array();
-    var gdp = data[i][selectedYear]["gdp"];
-
-    if (gdp < 10000)
-    {
-        output[country].fillKey = "one";    
-    }
-    else if (gdp >= 10000 && gdp < 20000)
-    {
-        output[country].fillKey = "two";
-    }
-    else if (gdp >= 20000 && gdp < 30000)
-    {
-        output[country].fillKey = "three";
-    }
-    else if (gdp >= 30000 && gdp < 40000)
-    {
-        output[country].fillKey = "four";
-    }
-    else if (gdp >= 40000)
-    {
-        output[country].fillKey = "five";
-    }
-    else 
-    {
-        output[country].fillKey = "six";
-    }
-    
-    output[country]["gdp"] = gdp;
-    output[country]["name"] = data[i]["country"];
-    output[country]["unemployment"] = data[i][selectedYear]["unemployment"];
-    output[country]["unemployment"] = data[i][selectedYear]["unemployment"];
+	string = string + '\n' + '\<option value\=\"' + data[i]["code"] + '\"\>' + data[i]["country"] + '\<\/option\>';
 }
-return output;
-}
+console.log(string);
+//document.getElementById('graph-title').innerHTMl = string;
+*/

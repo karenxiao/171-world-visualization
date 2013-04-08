@@ -4,6 +4,16 @@ body
 	font-family: 'Century Gothic', 'Verdana', sans-serif;	
 }
 
+#left
+{
+	float: left;
+	width: 960px;
+}
+
+#right
+{
+	float: left;
+}
 #map
 {
 	width: 960px;
@@ -21,7 +31,24 @@ body
 	color: gray;
 }
 
+
 .text
 {
 	font-size: 15px;
+}
+
+/**************
+* graph.js
+***************/
+
+.axis path,
+.axis line {
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+.line {
+  stroke: #3399CC;
+  stroke-width: 1px;
+  fill: none;
 }

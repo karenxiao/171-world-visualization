@@ -14,9 +14,13 @@ var child = document.getElementById('child');
 
 if (state == 'off')
 {
-  child.innerHTML = 'Select a year to display the visualization.';
+  child.innerHTML = 'To begin, select a year to display the visualization.';
 }
 
+/***********************
+* renderMap()
+* renders map from data
+************************/
 function renderMap()
 {  
   state = 'on';
@@ -28,6 +32,7 @@ function renderMap()
 
   var year = document.getElementById('year').value;
 
+  //render map
   var map = new Map(
   {
       scope: 'world',
