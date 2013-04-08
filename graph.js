@@ -35,18 +35,18 @@ for (var year = 0; year < numYears; year++)
 	var output = generateOutput(1995+year);
 
 	actualYear = 1995+year;
-	points[year] = [actualYear, output[country]["gdp"]];
+	points[year] = [d3.time.format("%Y").parse(actualYear.toString()), output[country]["gdp"]];
 }    
 
 // render title
-document.getElementById('graph-title').innerHTML = "GDP from years 1995-2010: " + output[country]["name"];
+document.getElementById('graph-title').innerHTML = "GDP per capita from years 1995-2010: " + output[country]["name"];
 
 // render graph
 var margin = {top: 20, right: 40, bottom: 50, left: 80},
     width = 1000 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var x = d3.scale.linear()
+var x = d3.time.scale()
     .range([0, width]);
 
 var y = d3.scale.linear()
