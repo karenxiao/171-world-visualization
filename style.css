@@ -1,7 +1,7 @@
 /* northamerica continent color */
 body
 {
-	font-family: 'Century Gothic', 'Verdana', sans-serif;	
+	font-family: 'Century Gothic', 'Georgia', 'Verdana', sans-serif;	
 }
 
 #top
@@ -78,5 +78,11 @@ body
 .line2 {
   stroke: #A00000;
   stroke-width: 5px;
+  fill: none;
+}
+
+.verticalLine {
+  stroke: gray;
+  stroke-width: .5px;
   fill: none;
 }

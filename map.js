@@ -62,5 +62,10 @@ function renderMap()
     });
 
   map.render();
+
+  if (graphState == 'on')
+  {
+    graph();
+  }
 }
 
