@@ -4,6 +4,11 @@ body
 	font-family: 'Century Gothic', 'Georgia', 'Verdana', sans-serif;	
 }
 
+#header
+{
+	width: 1200px;
+}
+
 #top
 {
 	width: 1200px;
@@ -41,12 +46,25 @@ body
 #title
 {
 	font-size: 40px;
+	color: #B44E3A;
 }
 
 #subtitle
 {
 	font-size: 20px;
 	color: gray;
+}
+
+#links
+{
+	font-size: 20px;
+	float: right;
+}
+
+a
+{
+	color: #DF8365;
+
 }
 
 .visualization-title

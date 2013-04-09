@@ -6,8 +6,13 @@
     </head>
     <body>
 
-        <div id="title">Growing Globally</div><br>
-        <div id="subtitle">a visualization by Rachna Raina '13 and Karen Xiao '14</div>
+        <div id="header">
+            <div id="title">Growing Globally</div><br>
+            <span id="subtitle">a visualization by Rachna Raina '13 and Karen Xiao '14</span>
+            <span id="links">
+                <a href="process_book.pdf">Process Book</a> &middot; <a href="www.youtube.com">Screencast</a>
+            </span>
+        </div>
         <hr>
         <div id="top">
           <span class="text">Display visualization for year:</span>
@@ -35,7 +40,7 @@
           <div class="text">
             This map is a visualization of global GDP trends over time. We hoped to be able to observed, primarily within OECD nations, the trend of GDP concentrations over the 15 years from 1995 - 2010. The value of this trend understanding comes from being able to see which nations have developed more rapidly comparatively, and if there are concentrations of development amongst any of these nations. The color progression visually highlights the progression, from the lightest (lowest GDP per capita), to darkest (highest GDP per capita).
           </div>
-          <img src="legendmap.png" id="legend-map" alt="Map legend">
+          <img src="img/legendmap.png" id="legend-map" alt="Map legend">
           <div id="map"><div id="child"></div></div>  
         </div>
      
@@ -46,8 +51,10 @@
             <option value="AUS">Australia</option>
             <option value="AUT">Austria</option>
             <option value="BEL">Belgium</option>
+            <option value="BRA">Brazil</option>
             <option value="CAN">Canada</option>
             <option value="CHL">Chile</option>
+            <option value="CHN">China</option>
             <option value="CZE">Czech Republic</option>
             <option value="DNK">Denmark</option>
             <option value="EST">Estonia</option>
@@ -57,6 +64,8 @@
             <option value="GRC">Greece</option>
             <option value="HUN">Hungary</option>
             <option value="ISL">Iceland</option>
+            <option value="IND">India</option>
+            <option value="IDN">Indonesia</option>
             <option value="IRL">Ireland</option>
             <option value="ISR">Israel</option>
             <option value="ITA">Italy</option>
@@ -69,28 +78,26 @@
             <option value="NOR">Norway</option>
             <option value="POL">Poland</option>
             <option value="PRT">Portugal</option>
+            <option value="RUS">Russia</option>
             <option value="SVK">Slovak Republic</option>
             <option value="SVN">Slovenia</option>
+            <option value="ZAF">South Africa</option>
             <option value="ESP">Spain</option>
             <option value="SWE">Sweden</option>
             <option value="CHE">Switzerland</option>
             <option value="TUR">Turkey</option>
             <option value="GBR">United Kingdom</option>
             <option value="USA">United States</option>
-            <option value="BRA">Brazil</option>
-            <option value="CHN">China</option>
-            <option value="IND">India</option>
-            <option value="IDN">Indonesia</option>
-            <option value="RUS">Russia</option>
-            <option value="ZAF">South Africa</option> 
           </select>
           <select id="country2" onchange="graph()">
             <option value="">Select Country</option>
             <option value="AUS">Australia</option>
             <option value="AUT">Austria</option>
             <option value="BEL">Belgium</option>
+            <option value="BRA">Brazil</option>
             <option value="CAN">Canada</option>
             <option value="CHL">Chile</option>
+            <option value="CHN">China</option>
             <option value="CZE">Czech Republic</option>
             <option value="DNK">Denmark</option>
             <option value="EST">Estonia</option>
@@ -100,6 +107,8 @@
             <option value="GRC">Greece</option>
             <option value="HUN">Hungary</option>
             <option value="ISL">Iceland</option>
+            <option value="IND">India</option>
+            <option value="IDN">Indonesia</option>
             <option value="IRL">Ireland</option>
             <option value="ISR">Israel</option>
             <option value="ITA">Italy</option>
@@ -112,27 +121,23 @@
             <option value="NOR">Norway</option>
             <option value="POL">Poland</option>
             <option value="PRT">Portugal</option>
+            <option value="RUS">Russia</option>
             <option value="SVK">Slovak Republic</option>
             <option value="SVN">Slovenia</option>
+            <option value="ZAF">South Africa</option>
             <option value="ESP">Spain</option>
             <option value="SWE">Sweden</option>
             <option value="CHE">Switzerland</option>
             <option value="TUR">Turkey</option>
             <option value="GBR">United Kingdom</option>
             <option value="USA">United States</option>
-            <option value="BRA">Brazil</option>
-            <option value="CHN">China</option>
-            <option value="IND">India</option>
-            <option value="IDN">Indonesia</option>
-            <option value="RUS">Russia</option>
-            <option value="ZAF">South Africa</option> 
           </select>
           <span class="visualization-title" id="graph-title">GDP per capita from years 1995-2010</span>
           <br><br>
           <div class="text">
               In contrast, the graph displayed below is intended to allow for comparisons within a particular nation of GDP per capita trends over a period of time (from 1995-2010).
           </div>
-          <img src="legendgraph.png" id="legend-graph" alt="Graph legend">
+          <img src="img/legendgraph.png" id="legend-graph" alt="Graph legend">
           <div id="graph">
             <div id="graph-child"></div>
           </div>
@@ -780,12 +785,12 @@ South Africa,2008,10452.737,22.9,20,26.3,26.3,,,,,,ZAF
 South Africa,2009,10237.994,23.9,22.1,26.1,26.1,,,,,,ZAF
 South Africa,2010,10497.583,24.9,22.8,27.5,27.5,,,,,,ZAF
       </textarea>
-        <script src="datamaps.js"></script>
-        <script src="d3.js"></script>
+        <script src="js/datamaps.js"></script>
+        <script src="js/d3.js"></script>
 
-        <script src="data.js"></script>
-        <script src="map.js"></script>
-        <script src="graph.js"></script>
+        <script src="js/data.js"></script>
+        <script src="js/map.js"></script>
+        <script src="js/graph.js"></script>
 
     </body>
 </html>
