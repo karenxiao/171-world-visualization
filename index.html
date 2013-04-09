@@ -35,13 +35,10 @@
           <div class="text">
             This map is a visualization of global GDP trends over time. We hoped to be able to observed, primarily within OECD nations, the trend of GDP concentrations over the 15 years from 1995 - 2010. The value of this trend understanding comes from being able to see which nations have developed more rapidly comparatively, and if there are concentrations of development amongst any of these nations. The color progression visually highlights the progression, from the lightest (lowest GDP per capita), to darkest (highest GDP per capita).
           </div>
-          <div id="map">
-            <div id="child"></div>
-          </div>
-          <div class="key">
-          </div>
+          <img src="legendmap.png" id="legend-map" alt="Map legend">
+          <div id="map"><div id="child"></div></div>  
         </div>
-        <hr>
+     
         <div id="bottom">
           <span class="text">Display visualization for country:</span>
           <select id="country1" onchange="graph()">
@@ -135,6 +132,7 @@
           <div class="text">
               In contrast, the graph displayed below is intended to allow for comparisons within a particular nation of GDP per capita trends over a period of time (from 1995-2010).
           </div>
+          <img src="legendgraph.png" id="legend-graph" alt="Graph legend">
           <div id="graph">
             <div id="graph-child"></div>
           </div>

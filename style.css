@@ -6,20 +6,36 @@ body
 
 #top
 {
-	width: 1000px;
+	width: 1200px;
 	padding: 10px;
+	float: left;
 }
 
 #bottom
 {
-	width: 1000px;
+	width: 1200px;
 	height: 600px;
 	padding: 10px;
 }
+
 #map
 {
 	width: 1000px;
 	height: 500px;
+}
+
+#legend-map
+{
+	width: 200px;
+	float: right;
+	visibility: hidden;
+}
+
+#legend-graph
+{
+	width: 100px;
+	float: right;
+	visibility: hidden;
 }
 
 #title
@@ -55,12 +71,12 @@ body
 
 .line1 {
   stroke: #3399CC;
-  stroke-width: 1px;
+  stroke-width: 5px;
   fill: none;
 }
 
 .line2 {
   stroke: #A00000;
-  stroke-width: 1px;
+  stroke-width: 5px;
   fill: none;
 }

@@ -30,6 +30,7 @@ function renderMap()
     return;
   }
   document.getElementById('map-title').innerHTML = 'Global GDP per capita and Unemployment Data: ' + year;
+  document.getElementById('legend-map').style.visibility = 'visible';
   
   //render map
   var map = new Map(
