@@ -23,6 +23,8 @@ for (var i = 0; i < numCountries; i++)
     data[i] = new Array();
     data[i]["country"] = lines[i*numYears+1][0];
     data[i]["code"] = lines[i*numYears+1][12];
+    data[i]["gdp"] = lines[i*numYears+1][2];
+    data[i]["unemployment"] = lines[i*numYears+1][3];
 
     for (var year = 0; year < numYears; year++)
     {
