@@ -15,7 +15,7 @@ for (var i = 0; i < lines.length; i++)
 }
 
 var numYears = 16;
-var numCountries = 40;
+var numCountries = 183;
 
 var data = new Array();
 for (var i = 0; i < numCountries; i++)
@@ -51,29 +51,37 @@ function generateOutput(selectedYear)
 	    output[country] = new Array();
 	    var gdp = data[i][selectedYear]["gdp"];
 
-	    if (gdp < 10000)
+	    if (gdp < 500)
 	    {
 	        output[country].fillKey = "one";    
 	    }
-	    else if (gdp >= 10000 && gdp < 20000)
+	    else if (gdp >= 500 && gdp < 1500)
 	    {
 	        output[country].fillKey = "two";
 	    }
-	    else if (gdp >= 20000 && gdp < 30000)
+	    else if (gdp >= 1500 && gdp < 5000)
 	    {
 	        output[country].fillKey = "three";
 	    }
-	    else if (gdp >= 30000 && gdp < 40000)
+	    else if (gdp >= 5000 && gdp < 15000)
 	    {
 	        output[country].fillKey = "four";
 	    }
-	    else if (gdp >= 40000)
+	   	else if (gdp >= 15000 && gdp < 30000)
 	    {
 	        output[country].fillKey = "five";
 	    }
-	    else 
+	   	else if (gdp >= 30000 && gdp < 45000)
 	    {
 	        output[country].fillKey = "six";
+	    }
+	    else if (gdp >= 45000)
+	    {
+	        output[country].fillKey = "seven";
+	    }
+	    else 
+	    {
+	        output[country].fillKey = "defaultFill";
 	    }
 	    
 	    output[country]["gdp"] = gdp;

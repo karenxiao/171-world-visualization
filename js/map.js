@@ -49,12 +49,13 @@ function renderMap()
       
       fills: 
       {
-        'one': '#FFEBD6',
+        'one': '#EFEBD6',
         'two': '#F5CBAE',
         'three': '#EBA988',
-        'four': '#DF8365',
-        'five': '#B44E3A',
-        'six': '#515151',
+        'four': '#E08465',
+        'five': '#D65D45',
+        'six': '#CC3527',
+        'seven': '#640A0A',
         defaultFill: '#515151'
       },
 
