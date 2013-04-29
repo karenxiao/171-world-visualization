@@ -6,8 +6,6 @@
         <!-- imported libraries -->
         <script src="js/datamaps.js"></script>
         <script src="js/d3.js"></script>
-        <script src="js/jquery-ui.js"></script>
-
     </head>
     <body>
 
@@ -21,42 +19,8 @@
         <hr>
         <div id="top">
           <span class="text">Display visualization for year:</span>
-          <select name="year" id="year" onchange="renderMap()">
-            <option value="">Select Year</option>
-            <option value="1995">1995</option>
-            <option value="1996">1996</option>
-            <option value="1997">1997</option>
-            <option value="1998">1998</option>
-            <option value="1999">1999</option>
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-            <option value="2003">2003</option>
-            <option value="2004">2004</option>
-            <option value="2005">2005</option>
-            <option value="2006">2006</option>
-            <option value="2007">2007</option>
-            <option value="2008">2008</option>
-            <option value="2009">2009</option>
-            <option value="2010">2010</option>  
-          </select>
-            <script>
-              $(function() {
-                var select = $( "#year" );
-                var slider = $( "<div id='slider'></div>" ).insertAfter( select ).slider({
-                  min: 1,
-                  max: 6,
-                  range: "min",
-                  value: select[ 0 ].selectedIndex + 1,
-                  slide: function( event, ui ) {
-                    select[ 0 ].selectedIndex = ui.value - 1;
-                  }
-                });
-                $( "#year" ).change(function() {
-                  slider.slider( "value", this.selectedIndex + 1 );
-                });
-              });
-            </script>
+          <input id="year" onchange="renderMap()" type="range" min="1995" max="2010" step="1" />
+          <span id="year-display"></span>
           <div class="visualization-title" id="map-title">Global GDP per capita and Unemployment Data</div>
           <br><br>
           <div class="text">

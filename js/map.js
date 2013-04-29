@@ -16,7 +16,6 @@ var child = document.getElementById('child');
 ************************/
 function renderMap()
 {  
-
   // create element to hold map
   child = document.getElementById('child');
   mapElement.removeChild(child);
@@ -29,6 +28,7 @@ function renderMap()
   {
     return;
   }
+  document.getElementById('year-display').innerHTML = year;
   document.getElementById('map-title').innerHTML = 'Global GDP per capita and Unemployment Data: ' + year;
   document.getElementById('legend-map').style.visibility = 'visible';
   
