@@ -87,7 +87,7 @@ function generateOutput(selectedYear)
 	    output[country]["gdp"] = gdp;
 	    output[country]["name"] = data[i]["country"];
 	    output[country]["unemployment"] = data[i][selectedYear]["unemployment"];
-	    output[country]["unemployment"] = data[i][selectedYear]["unemployment"];
+	    output[country]["population"] = data[i][selectedYear]["population"];
 	}
 	return output;
 }

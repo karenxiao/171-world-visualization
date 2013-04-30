@@ -20,9 +20,11 @@
         </div>
         <hr>
         <div id="top">
-          <span class="text">Display visualization for year:</span>
-          <input id="year" onchange="renderMap()" type="range" value="1995" min="1995" max="2010" step="1" data-intro='Scroll over the years to see more information' data-step='2'/>
-          <span id="year-display"></span>
+            <div id="slider">
+                <span class="text">Display visualization for year:</span>
+                <input id="year" onchange="renderMap()" type="range" value="1995" min="1995" max="2010" step="1" data-intro='Scroll over the years to see more information' data-step='2'/>
+                <span id="year-display"></span>
+            </div>
           <div class="visualization-title" id="map-title">Global GDP per capita and Unemployment Data</div>
           <br><br>
           <div class="text">
@@ -33,99 +35,19 @@
         </div>
      
         <div id="bottom">
-          <span class="text">Display visualization for country:</span>
-          <select id="country1" onchange="graph()">
-            <option value="">Select Country</option>
-            <option value="AUS" selected="selected">Australia</option>
-            <option value="AUT">Austria</option>
-            <option value="BEL">Belgium</option>
-            <option value="BRA">Brazil</option>
-            <option value="CAN">Canada</option>
-            <option value="CHL">Chile</option>
-            <option value="CHN">China</option>
-            <option value="CZE">Czech Republic</option>
-            <option value="DNK">Denmark</option>
-            <option value="EST">Estonia</option>
-            <option value="FIN">Finland</option>
-            <option value="FRA">France</option>
-            <option value="DEU">Germany</option>
-            <option value="GRC">Greece</option>
-            <option value="HUN">Hungary</option>
-            <option value="ISL">Iceland</option>
-            <option value="IND">India</option>
-            <option value="IDN">Indonesia</option>
-            <option value="IRL">Ireland</option>
-            <option value="ISR">Israel</option>
-            <option value="ITA">Italy</option>
-            <option value="JPN">Japan</option>
-            <option value="PRK">Korea</option>
-            <option value="LUX">Luxembourg</option>
-            <option value="MEX">Mexico</option>
-            <option value="NLD">Netherlands</option>
-            <option value="NZL">New Zealand</option>
-            <option value="NOR">Norway</option>
-            <option value="POL">Poland</option>
-            <option value="PRT">Portugal</option>
-            <option value="RUS">Russia</option>
-            <option value="SVK">Slovak Republic</option>
-            <option value="SVN">Slovenia</option>
-            <option value="ZAF">South Africa</option>
-            <option value="ESP">Spain</option>
-            <option value="SWE">Sweden</option>
-            <option value="CHE">Switzerland</option>
-            <option value="TUR">Turkey</option>
-            <option value="GBR">United Kingdom</option>
-            <option value="USA">United States</option>
-          </select>
-          <select id="country2" onchange="graph()">
-            <option value="">Select Country</option>
-            <option value="AUS">Australia</option>
-            <option value="AUT" selected="selected">Austria</option>
-            <option value="BEL">Belgium</option>
-            <option value="BRA">Brazil</option>
-            <option value="CAN">Canada</option>
-            <option value="CHL">Chile</option>
-            <option value="CHN">China</option>
-            <option value="CZE">Czech Republic</option>
-            <option value="DNK">Denmark</option>
-            <option value="EST">Estonia</option>
-            <option value="FIN">Finland</option>
-            <option value="FRA">France</option>
-            <option value="DEU">Germany</option>
-            <option value="GRC">Greece</option>
-            <option value="HUN">Hungary</option>
-            <option value="ISL">Iceland</option>
-            <option value="IND">India</option>
-            <option value="IDN">Indonesia</option>
-            <option value="IRL">Ireland</option>
-            <option value="ISR">Israel</option>
-            <option value="ITA">Italy</option>
-            <option value="JPN">Japan</option>
-            <option value="PRK">Korea</option>
-            <option value="LUX">Luxembourg</option>
-            <option value="MEX">Mexico</option>
-            <option value="NLD">Netherlands</option>
-            <option value="NZL">New Zealand</option>
-            <option value="NOR">Norway</option>
-            <option value="POL">Poland</option>
-            <option value="PRT">Portugal</option>
-            <option value="RUS">Russia</option>
-            <option value="SVK">Slovak Republic</option>
-            <option value="SVN">Slovenia</option>
-            <option value="ZAF">South Africa</option>
-            <option value="ESP">Spain</option>
-            <option value="SWE">Sweden</option>
-            <option value="CHE">Switzerland</option>
-            <option value="TUR">Turkey</option>
-            <option value="GBR">United Kingdom</option>
-            <option value="USA">United States</option>
-          </select>
-          <span class="visualization-title" id="graph-title">GDP per capita from years 1995-2010</span>
+          <div class="visualization-title" id="graph-title">GDP per capita from years 1995-2010</div>
           <br><br>
           <div class="text">
-              In contrast, the graph displayed below is intended to allow for comparisons within a particular nation of GDP per capita trends over a period of time (from 1995-2010).
+              In contrast, the graph displayed below is intended to allow for comparisons within a particular nation of GDP per capita trends over a period of time.
           </div>
-          <img src="img/legendgraph.png" id="legend-graph" alt="Graph legend">
+          <div id="graph-config">
+          Select the data that you want to display:
+          <form>
+            <input type="radio" name="filter" value="gdp" checked>GDP per capita<br>
+            <input type="radio" name="filter" value="unemployment">Unemployment Rate<br>
+            <input type="radio" name="filter" value="population">Population
+          </form>
+          </div>
           <div id="graph">
             <div id="graph-child"></div>
           </div>
@@ -3060,14 +2982,16 @@ ZIMBABWE,2007,451,,,,,,,,,,ZWE,,2007 ZWE
 ZIMBABWE,2008,372,,,,,,,,,,ZWE,,2008 ZWE
 ZIMBABWE,2009,488,,,,,,,,,,ZWE,,2009 ZWE
 ZIMBABWE,2010,591,,,,,,,,,,ZWE,,2010 ZWE
-      </textarea>
+</textarea>
+
         <script src="js/data.js"></script>
         <script src="js/map.js"></script>
         <script src="js/graph.js"></script>
         <script> 
             introJs().start();
             renderMap();
-            graph();
+            graph("USA", "gdp");
         </script> 
     </body>
 </html>
+

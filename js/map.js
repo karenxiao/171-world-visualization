@@ -64,13 +64,8 @@ function renderMap()
   map.$el.bind("map-click", function(e, data) {
     // data.data corresponds to the items you passed into the data param
     // data.geography corresponds to the item in the geography json.
-    alert(data.data.name); // assuming your country name is in 'name'
+    graph(data.geography.id); // assuming your country name is in 'name'
   });
 
-
-  if (graphState == 'on')
-  {
-    graph();
-  }
 }
 

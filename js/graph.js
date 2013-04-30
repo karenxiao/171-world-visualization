@@ -7,7 +7,6 @@
 * creates a line graph using D3
 **************************************************************/
 
-graphState = 'off';
 var graphElement = document.getElementById('graph');
 var child = document.getElementById('graph-child');
 
@@ -15,7 +14,7 @@ var child = document.getElementById('graph-child');
 * generatePoints()
 * generates data points for country selected
 ************************/
-function generatePoints(country)
+function generatePoints(country, filter)
 {
   var points = new Array();
   for (var year = 0; year < numYears; year++)
@@ -33,38 +32,36 @@ function generatePoints(country)
 * renders line graph from data
 ************************/
 
-function graph()
+function graph(country)
 {
-  graphState = 'on';
   child = document.getElementById('graph-child');
   graphElement.removeChild(child);
   var newChild = document.createElement('graph-child');
   graphElement.appendChild(newChild);
   newChild.id = "graph-child"
 
-  // get graph data
-  var country1 = document.getElementById("country1").value;
-  var country2 = document.getElementById("country2").value; 
-  if (country1 == '' || country2 == '')
-  {
-    graphState = 'off';
-    return;
-  }
-
   // get year selected
   var selectedYear = document.getElementById('year').value;
   var output = generateOutput(selectedYear);
   selectedYear = d3.time.format("%Y").parse(selectedYear.toString());
 
-  var points1 = generatePoints(country1);
-  var points2 = generatePoints(country2);
+  // get filter selected
+  var radios = document.getElementsByName('filter');
+  for (var i = 0, length = radios.length; i < length; i++) 
+  {
+      if (radios[i].checked) 
+      {
+        var filter = radios[i].value;
+      }
+  }
+
+  var points = generatePoints(country, filter);
   var verticalLineData = [[selectedYear, 900], [selectedYear, 50000]];
 
-  var circleData = [[1997, output[country1]["gdp"], 5, 'blue'], [1997, output[country2]["gdp"], 5, 'blue']];
+  //var circleData = [[1997, output[country1]["gdp"], 5, 'blue'], [1997, output[country2]["gdp"], 5, 'blue']];
 
   // render title
-  document.getElementById('graph-title').innerHTML = "GDP per capita: " + output[country1]["name"] + ', ' + output[country2]["name"];
-  document.getElementById('legend-graph').style.visibility = 'visible';
+  document.getElementById('graph-title').innerHTML = "GDP per capita from years 1995-2010: " + country;
 
   // render graph
   var margin = {top: 20, right: 40, bottom: 50, left: 80},
@@ -99,7 +96,7 @@ function graph()
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    x.domain(d3.extent(points1, function(d) { return d["year"]; }));
+    x.domain(d3.extent(points, function(d) { return d["year"]; }));
     y.domain([100, 50000]);
 
     svg.append("g")
@@ -120,27 +117,13 @@ function graph()
         .text("GDP per capita (USD)");
 
     svg.append("path")
-        .datum(points1)
+        .datum(points)
         .attr("class", "line1")
-        .attr("d", line);
-
-    svg.append("path")
-        .datum(points2)
-        .attr("class", "line2")
         .attr("d", line);
 
     svg.append("path")
         .datum(verticalLineData)
         .attr("class", "verticalLine")
         .attr("d", verticalLine);
-
-    svg.selectAll("circle")
-      .data(circleData)
-      .enter()
-      .append("circle")
-      .attr("cx", function(d) { return d[0]; })
-      .attr("cy", function(d) { return d[1]; })
-      .attr("r", function(d) { return d[2]; })
-      .style("fill", function(d) { return d[3]; });
 
 }
