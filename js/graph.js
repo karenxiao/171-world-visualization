@@ -100,7 +100,7 @@ function graph()
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     x.domain(d3.extent(points1, function(d) { return d["year"]; }));
-    y.domain([900, 50000]);
+    y.domain([100, 50000]);
 
     svg.append("g")
         .attr("class", "axis")

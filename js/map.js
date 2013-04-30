@@ -33,36 +33,40 @@ function renderMap()
   document.getElementById('legend-map').style.visibility = 'visible';
   
   //render map
-  var map = new Map(
+  var map = $('#child').datamap(
   {
-      scope: 'world',
+    scope: 'world',
 
-      el: $('#child'),
+    geography_config: 
+    { 
+      highlightBorderColor: '#1C1CFF',
+      highlightFillColor: '#3B63F3',
+      highlightOnHover: true,
+      popupTemplate: _.template('<div class="hoverinfo"> <strong><%= geography.properties.name %></strong> <% if (data.gdp) { %><hr/>  GDP per capita (USD): <%= data.gdp %> <% } %> <% if (data.unemployment) { %><hr/>  Unemployment Rate: <%= data.unemployment %> <% } %> </div>')
+    },
+    
+    fills: 
+    {
+      'one': '#EFEBD6',
+      'two': '#F5CBAE',
+      'three': '#EBA988',
+      'four': '#E08465',
+      'five': '#D65D45',
+      'six': '#CC3527',
+      'seven': '#640A0A',
+      defaultFill: '#515151'
+    },
 
-      geography_config: 
-      { 
-        highlightBorderColor: '#1C1CFF',
-        highlightFillColor: '#3B63F3',
-        highlightOnHover: true,
-        popupTemplate: _.template('<div class="hoverinfo"> <strong><%= geography.properties.name %></strong> <% if (data.gdp) { %><hr/>  GDP per capita (USD): <%= data.gdp %> <% } %> <% if (data.unemployment) { %><hr/>  Unemployment Rate: <%= data.unemployment %> <% } %> </div>')
-      },
-      
-      fills: 
-      {
-        'one': '#EFEBD6',
-        'two': '#F5CBAE',
-        'three': '#EBA988',
-        'four': '#E08465',
-        'five': '#D65D45',
-        'six': '#CC3527',
-        'seven': '#640A0A',
-        defaultFill: '#515151'
-      },
-
-      data: generateOutput(year),
+    data: generateOutput(year),
     });
 
-  map.render();
+
+  map.$el.bind("map-click", function(e, data) {
+    // data.data corresponds to the items you passed into the data param
+    // data.geography corresponds to the item in the geography json.
+    alert(data.data.name); // assuming your country name is in 'name'
+  });
+
 
   if (graphState == 'on')
   {

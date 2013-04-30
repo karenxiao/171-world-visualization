@@ -3,23 +3,25 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="css/introjs.css"/>
         <!-- imported libraries -->
         <script src="js/datamaps.js"></script>
         <script src="js/d3.js"></script>
+        <script src="js/intro.js"></script>
     </head>
     <body>
 
         <div id="header">
             <div id="title">Growing Globally</div><br>
             <span id="subtitle">a visualization by Rachna Raina '13 and Karen Xiao '14</span>
-            <span id="links">
+            <span id="links" data-intro='Links to additional resources' data-step='1'>
                 <a href="process_book.pdf">Process Book</a> &middot; <a href="http://www.youtube.com/watch?v=QjF0f_pNueQ">Screencast</a>
             </span>
         </div>
         <hr>
         <div id="top">
           <span class="text">Display visualization for year:</span>
-          <input id="year" onchange="renderMap()" type="range" min="1995" max="2010" step="1" />
+          <input id="year" onchange="renderMap()" type="range" value="1995" min="1995" max="2010" step="1" data-intro='Scroll over the years to see more information' data-step='2'/>
           <span id="year-display"></span>
           <div class="visualization-title" id="map-title">Global GDP per capita and Unemployment Data</div>
           <br><br>
@@ -27,14 +29,14 @@
             This map is a visualization of global GDP trends over time. We hoped to be able to observed, primarily within OECD nations, the trend of GDP concentrations over the 15 years from 1995 - 2010. The value of this trend understanding comes from being able to see which nations have developed more rapidly comparatively, and if there are concentrations of development amongst any of these nations. The color progression visually highlights the progression, from the lightest (lowest GDP per capita), to darkest (highest GDP per capita).
           </div>
           <img src="img/legendmap.png" id="legend-map" alt="Map legend">
-          <div id="map"><div id="child"></div></div>  
+          <div id="map" data-intro='Click on individual nations to see more information below about these countries. Scroll over individual nations to see data for particular years.' data-step='3'><div id="child"></div></div>  
         </div>
      
         <div id="bottom">
           <span class="text">Display visualization for country:</span>
           <select id="country1" onchange="graph()">
             <option value="">Select Country</option>
-            <option value="AUS">Australia</option>
+            <option value="AUS" selected="selected">Australia</option>
             <option value="AUT">Austria</option>
             <option value="BEL">Belgium</option>
             <option value="BRA">Brazil</option>
@@ -78,7 +80,7 @@
           <select id="country2" onchange="graph()">
             <option value="">Select Country</option>
             <option value="AUS">Australia</option>
-            <option value="AUT">Austria</option>
+            <option value="AUT" selected="selected">Austria</option>
             <option value="BEL">Belgium</option>
             <option value="BRA">Brazil</option>
             <option value="CAN">Canada</option>
@@ -126,9 +128,6 @@
           <img src="img/legendgraph.png" id="legend-graph" alt="Graph legend">
           <div id="graph">
             <div id="graph-child"></div>
-          </div>
-          <div id="unemployment">
-            <div id="unemployment-child"></div>
           </div>
         </div>
         <textarea id="data" style="visibility: hidden">
@@ -3065,7 +3064,10 @@ ZIMBABWE,2010,591,,,,,,,,,,ZWE,,2010 ZWE
         <script src="js/data.js"></script>
         <script src="js/map.js"></script>
         <script src="js/graph.js"></script>
-        <script src="js/unemployment.js"></script>
-
+        <script> 
+            introJs().start();
+            renderMap();
+            graph();
+        </script> 
     </body>
 </html>
