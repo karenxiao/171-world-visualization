@@ -9,6 +9,7 @@
 
 var mapElement = document.getElementById('map');
 var child = document.getElementById('child');
+var currentCountry = "USA";
 
 /***********************
 * renderMap()
@@ -64,7 +65,8 @@ function renderMap()
   map.$el.bind("map-click", function(e, data) {
     // data.data corresponds to the items you passed into the data param
     // data.geography corresponds to the item in the geography json.
-    graph(data.geography.id); // assuming your country name is in 'name'
+    currentCountry = data.geography.id;
+    graph(currentCountry);
   });
 
 }

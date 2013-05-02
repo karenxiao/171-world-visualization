@@ -84,10 +84,10 @@ function generateOutput(selectedYear)
 	        output[country].fillKey = "defaultFill";
 	    }
 	    
-	    output[country]["gdp"] = gdp;
+	    output[country]["gdp"] = parseFloat(gdp);
 	    output[country]["name"] = data[i]["country"];
-	    output[country]["unemployment"] = data[i][selectedYear]["unemployment"];
-	    output[country]["population"] = data[i][selectedYear]["population"];
+	    output[country]["unemployment"] = parseFloat(data[i][selectedYear]["unemployment"]);
+	    output[country]["population"] = parseFloat(data[i][selectedYear]["population"]);
 	}
 	return output;
 }

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,18 +19,26 @@
         </div>
         <hr>
         <div id="top">
-            <div id="slider">
-                <span class="text">Display visualization for year:</span>
-                <input id="year" onchange="renderMap()" type="range" value="1995" min="1995" max="2010" step="1" data-intro='Scroll over the years to see more information' data-step='2'/>
-                <span id="year-display"></span>
+            <div id="top-left">
+                <div id="slider">
+                    <span class="text">Display visualization for year:</span>
+                    <input id="year" onchange="renderMap()" type="range" value="1995" min="1995" max="2010" step="1" data-intro='Scroll over the years to see more information' data-step='2'/>
+                    <span id="year-display"></span>
+                </div>
+                <div class="visualization-title" id="map-title">Global GDP per capita and Unemployment Data</div>
+                <br><br>
+                <div class="text">
+                    This map is a visualization of global GDP trends over time. We hoped to be able to observed, primarily within OECD nations, the trend of GDP concentrations over the 15 years from 1995 - 2010. The value of this trend understanding comes from being able to see which nations have developed more rapidly comparatively, and if there are concentrations of development amongst any of these nations. The color progression visually highlights the progression, from the lightest (lowest GDP per capita), to darkest (highest GDP per capita).
+                </div>
+                <img src="img/legendmap.png" id="legend-map" alt="Map legend">
+                <div id="map" data-intro='Click on individual nations to see more information below about these countries. Scroll over individual nations to see data for particular years.' data-step='3'><div id="child"></div></div>  
             </div>
-          <div class="visualization-title" id="map-title">Global GDP per capita and Unemployment Data</div>
-          <br><br>
-          <div class="text">
-            This map is a visualization of global GDP trends over time. We hoped to be able to observed, primarily within OECD nations, the trend of GDP concentrations over the 15 years from 1995 - 2010. The value of this trend understanding comes from being able to see which nations have developed more rapidly comparatively, and if there are concentrations of development amongst any of these nations. The color progression visually highlights the progression, from the lightest (lowest GDP per capita), to darkest (highest GDP per capita).
-          </div>
-          <img src="img/legendmap.png" id="legend-map" alt="Map legend">
-          <div id="map" data-intro='Click on individual nations to see more information below about these countries. Scroll over individual nations to see data for particular years.' data-step='3'><div id="child"></div></div>  
+            <div id="top-right">
+                <div id="events">
+                    <div class="visualization-title">Worldwide Events</div><br>
+                    <div class="text" id="event"></div>
+                </div>
+            </div>
         </div>
      
         <div id="bottom">
@@ -42,10 +49,9 @@
           </div>
           <div id="graph-config">
           Select the data that you want to display:
-          <form>
+          <form id="graph-filter">
             <input type="radio" name="filter" value="gdp" checked>GDP per capita<br>
             <input type="radio" name="filter" value="unemployment">Unemployment Rate<br>
-            <input type="radio" name="filter" value="population">Population
           </form>
           </div>
           <div id="graph">

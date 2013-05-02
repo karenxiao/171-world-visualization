@@ -6,14 +6,21 @@ body
 
 #header
 {
-	width: 1200px;
+	width: 1400px;
 }
 
-#top
+#top-left
 {
-	width: 1200px;
+	width: 1000px;
 	padding: 10px;
 	float: left;
+}
+
+#top-right
+{
+	width: 400px;
+	padding: 10px;
+	float: right;
 }
 
 #bottom
@@ -26,13 +33,13 @@ body
 
 #map
 {
-	width: 1000px;
-	height: 500px;
+	width: 900px;
+	height: 450px;
 }
 
 #legend-map
 {
-	width: 200px;
+	width: 100px;
 	float: right;
 	visibility: hidden;
 }
@@ -65,7 +72,6 @@ body
 a
 {
 	color: #DF8365;
-
 }
 
 .visualization-title
@@ -86,6 +92,7 @@ a
 #graph-config
 {
 	float: right;
+	padding: 10px;
 }
 
 /**************
