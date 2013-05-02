@@ -9,7 +9,7 @@
 
 var graphElement = document.getElementById('graph');
 var child = document.getElementById('graph-child');
-$('#graph-filter').change(function() { graph(currentCountry); });
+$('#select-filter').change(function() { graph(currentCountry); });
 var graphLabels = {"gdp": "GDP per capita (USD)", "unemployment": "Unemployment Rate", "population": "Population"};
 /***********************
 * generatePoints()
@@ -111,7 +111,7 @@ function graph(country)
 
     svg.append("path")
         .datum(points)
-        .attr("class", "line1")
+        .attr("class", "line")
         .attr("d", line);
 
     svg.selectAll("circle")
@@ -125,11 +125,9 @@ function graph(country)
 
 }
 
-
 function displayEvent(year)
 {
   $("#event").html("Some event happened on " + year);
 }
-
 
 

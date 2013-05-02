@@ -31,15 +31,20 @@ body
 	float: left;
 }
 
+#events 
+{
+	float: left;
+}
+
 #map
 {
-	width: 900px;
-	height: 450px;
+	width: 850px;
+	height: 400px;
 }
 
 #legend-map
 {
-	width: 100px;
+	width: 150px;
 	float: right;
 	visibility: hidden;
 }
@@ -99,26 +104,14 @@ a
 * graph.js
 ***************/
 
+.axis,
 .axis path,
 .axis line {
   stroke: #000;
-  stroke-width: .5px;
 }
 
-.line1 {
+.line {
   stroke: #3399CC;
   stroke-width: 5px;
-  fill: none;
-}
-
-.line2 {
-  stroke: #A00000;
-  stroke-width: 5px;
-  fill: none;
-}
-
-.verticalLine {
-  stroke: gray;
-  stroke-width: .5px;
   fill: none;
 }
