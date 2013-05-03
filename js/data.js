@@ -23,8 +23,8 @@ for (var i = 0; i < numCountries; i++)
     data[i] = new Array();
     data[i]["country"] = lines[i*numYears+1][0];
     data[i]["code"] = lines[i*numYears+1][12];
-    data[i]["gdp"] = lines[i*numYears+1][2];
-    data[i]["unemployment"] = lines[i*numYears+1][3];
+    //data[i]["gdp"] = lines[i*numYears+1][2];
+    //data[i]["unemployment"] = lines[i*numYears+1][3];
 
     for (var year = 0; year < numYears; year++)
     {
@@ -91,3 +91,66 @@ function generateOutput(selectedYear)
 	}
 	return output;
 }
+
+
+function generateFilteredOutput(selectedYear, event)
+{
+	var output = new Array();
+	for (var i = 0; i < data.length; i++)
+	{
+		year = eventYears[event];
+		if (data[i][year][event] == "0")
+		{
+			continue;
+		}
+		else 
+		{
+		    var country = data[i]["code"];
+		    output[country] = new Array();
+		    var gdp = data[i][selectedYear]["gdp"];
+
+		    if (gdp < 500)
+		    {
+		        output[country].fillKey = "one";    
+		    }
+		    else if (gdp >= 500 && gdp < 1500)
+		    {
+		        output[country].fillKey = "two";
+		    }
+		    else if (gdp >= 1500 && gdp < 5000)
+		    {
+		        output[country].fillKey = "three";
+		    }
+		    else if (gdp >= 5000 && gdp < 15000)
+		    {
+		        output[country].fillKey = "four";
+		    }
+		   	else if (gdp >= 15000 && gdp < 30000)
+		    {
+		        output[country].fillKey = "five";
+		    }
+		   	else if (gdp >= 30000 && gdp < 45000)
+		    {
+		        output[country].fillKey = "six";
+		    }
+		    else if (gdp >= 45000)
+		    {
+		        output[country].fillKey = "seven";
+		    }
+		    else 
+		    {
+		        output[country].fillKey = "defaultFill";
+		    }
+		    
+		    output[country]["gdp"] = parseFloat(gdp);
+		    output[country]["name"] = data[i]["country"];
+		    output[country]["unemployment"] = parseFloat(data[i][selectedYear]["unemployment"]);
+		    output[country]["population"] = parseFloat(data[i][selectedYear]["population"]);
+		    output[country]["hoverevent"] = data[i][selectedYear]["hoverevent"];
+		}
+	}
+	return output;
+}
+
+
+

@@ -38,20 +38,13 @@ body
 
 #map
 {
-	width: 850px;
+	width: 800px;
 	height: 400px;
 }
 
 #legend-map
 {
-	width: 150px;
-	float: right;
-	visibility: hidden;
-}
-
-#legend-graph
-{
-	width: 100px;
+	width: 200px;
 	float: right;
 	visibility: hidden;
 }

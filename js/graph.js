@@ -62,26 +62,26 @@ function graph(country)
 
   // render graph
   var margin = {top: 20, right: 20, bottom: 20, left: 80},
-      width = 800 - margin.left - margin.right,
-      height = 400 - margin.top - margin.bottom;
+    width = 800 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
   var x = d3.time.scale()
-      .range([0, width]);
+    .range([0, width]);
 
   var y = d3.scale.linear()
-      .range([height, 0]);
+    .range([height, 0]);
 
   var xAxis = d3.svg.axis()
-      .scale(x)
-      .orient("bottom");
+    .scale(x)
+    .orient("bottom");
 
   var yAxis = d3.svg.axis()
-      .scale(y)
-      .orient("left");
+    .scale(y)
+    .orient("left");
 
   var line = d3.svg.line()
-      .x(function(d) { return x(d["year"]); })
-      .y(function(d) { return y(d[filter]); });
+    .x(function(d) { return x(d["year"]); })
+    .y(function(d) { return y(d[filter]); });
 
   var svg = d3.select("#graph-child").append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -93,10 +93,10 @@ function graph(country)
     y.domain(d3.extent(points, function(d) { return d[filter]; }));
 
     svg.append("g")
-        .attr("class", "axis")
-        .attr("stroke-width", 1)
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+      .attr("class", "axis")
+      .attr("stroke-width", 1)
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
 
     svg.append("g")
         .attr("class", "axis")
@@ -110,9 +110,9 @@ function graph(country)
         .text(graphLabels[filter]);
 
     svg.append("path")
-        .datum(points)
-        .attr("class", "line")
-        .attr("d", line);
+      .datum(points)
+      .attr("class", "line")
+      .attr("d", line);
 
     svg.selectAll("circle")
       .data(points)
@@ -125,9 +125,14 @@ function graph(country)
 
 }
 
+function drawLine()
+{
+  
+}
+
 function displayEvent(year)
 {
-  $("#event").html("Some event happened on " + year);
+  return;
 }
 
 

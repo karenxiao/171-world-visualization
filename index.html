@@ -22,7 +22,7 @@
             <div id="top-left">
                 <div id="slider">
                     <span class="text">Display visualization for year:</span>
-                    <input id="year" onchange="renderMap()" type="range" value="1995" min="1995" max="2010" step="1" data-intro='Scroll over the years to see more information' data-step='2'/>
+                    <input id="year" onchange="renderMap('normal',null)" type="range" value="1995" min="1995" max="2010" step="1" data-intro='Scroll over the years to see more information' data-step='2'/>
                     <span id="year-display"></span>
                 </div>
                 <div class="visualization-title" id="map-title">Global GDP per capita and Unemployment Data</div>
@@ -37,12 +37,14 @@
                 <div id="events">
                     <div class="visualization-title">Worldwide Events</div><br><br>
                     <form id="select-event">
-                        <input type="radio" name="event" value="1">GDP per capita<br>
-                        <input type="radio" name="event" value="2">Unemployment Rate<br>
-                        <input type="radio" name="event" value="3">Unemployment Rate<br>
-                        <input type="radio" name="event" value="4">Unemployment Rate<br>
-                        <input type="radio" name="event" value="5">Unemployment Rate<br>
+                        <input type="radio" name="event" value="1998event">1998: Aftermath of the Asian Tiger Crisis<br>
+                        <input type="radio" name="event" value="2000event">2000: Y2K<br>
+                        <input type="radio" name="event" value="2001event">2001: Dot-com Bubble<br>
+                        <input type="radio" name="event" value="2002event">2002: 9/11 Aftermath<br>
+                        <input type="radio" name="event" value="2009event">2009: Global Financial Crisis Unraveling<br>
                     </form>
+                    <br>
+                    <button onclick="eventClear()">Clear</button>
                 </div>
             </div>
         </div>
@@ -3004,7 +3006,7 @@ ZIMBABWE,2010,591,,,,,,,,,,ZWE,,2010 ZWE,0,0,0,0,0,
         <script src="js/events.js"></script>
         <script> 
             introJs().start();
-            renderMap();
+            renderMap("normal", null);
             graph("USA", "gdp");
         </script> 
     </body>

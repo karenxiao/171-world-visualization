@@ -15,7 +15,7 @@ var currentCountry = "USA";
 * renderMap()
 * renders map from data
 ************************/
-function renderMap()
+function renderMap(state, event)
 {  
   // create element to hold map
   child = document.getElementById('child');
@@ -33,6 +33,17 @@ function renderMap()
   document.getElementById('map-title').innerHTML = 'Global GDP per capita and Unemployment Data: ' + year;
   document.getElementById('legend-map').style.visibility = 'visible';
   
+  var processedData;
+  // populate data
+  if (state == "normal")
+  {
+    processedData = generateOutput(year);
+  }
+  else if (state == "filtered")
+  {
+    processedData = generateFilteredOutput(year, event);
+  }
+
   //render map
   var map = $('#child').datamap(
   {
@@ -58,8 +69,8 @@ function renderMap()
       defaultFill: '#515151'
     },
 
-    data: generateOutput(year),
-    });
+    data: processedData,
+  });
 
 
   map.$el.bind("map-click", function(e, data) {
