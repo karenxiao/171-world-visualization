@@ -8,10 +8,15 @@ All source files:
 	graph.js
 	index.html
 	map.js
+	unemployment.js
+	intro.js
 	style.css
-Embedded legend images 
-Process book PDF
-Original country data (years 1995 - 2010) 
+	introjs.css
+	data.csv
+	legendgraph.png
+	legendmap.png
+	process_book.pdf
+	
 This readme 
 
 //*********************************************//
@@ -29,12 +34,14 @@ Which parts of our code are responsible for what?
 	index.html houses the HTML for our project, and is what is visible when the user visits our site
 	map.js implements an interactive map using the DataMaps add-on
 	style.css contains all the style for our project and is linked to our page
+	intro.js and introjs.css controls the intro "tutorial" to our project
 
 //*********************************************//
 	
 Which parts are libraries and are they hosted in the folder or externally online? 
 
 	Both of the libraries are hosted in the folder (in separate javascript files), and the two libraries we used are the d3 library and the DataMaps add-on library
+	We used the intro.js library as well, hosted in our javascript folder.
 
 //*********************************************//
 

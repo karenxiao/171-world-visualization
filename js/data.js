@@ -27,7 +27,7 @@ for (var i = 0; i < numCountries; i++)
     for (var year = 0; year < numYears; year++)
     {
         data[i][1995+year] = new Array();
-        for (var j = 2; j < lines[0].length; j++)
+        for (var j = 2; j < lines[0].length+1; j++)
         {
             var key = lines[0][j];
             var value = lines[i*numYears+year+1][j];
@@ -85,7 +85,7 @@ function generateOutput(selectedYear)
 	    output[country]["gdp"] = parseFloat(gdp);
 	    output[country]["name"] = data[i]["country"];
 	    output[country]["unemployment"] = parseFloat(data[i][selectedYear]["unemployment"]);
-	    output[country]["population"] = parseFloat(data[i][selectedYear]["population"]);
+	    output[country]["hoverevent"] = data[i][selectedYear]["hoverevent"];
 	}
 	return output;
 }
@@ -105,7 +105,7 @@ function generateFilteredOutput(selectedYear, event)
 		{
 		    var country = data[i]["code"];
 		    output[country] = new Array();
-		    var gdp = data[i][selectedYear]["gdp"];
+		    var gdp = data[i][year]["gdp"];
 
 		    if (gdp < 500)
 		    {
@@ -142,9 +142,8 @@ function generateFilteredOutput(selectedYear, event)
 		    
 		    output[country]["gdp"] = parseFloat(gdp);
 		    output[country]["name"] = data[i]["country"];
-		    output[country]["unemployment"] = parseFloat(data[i][selectedYear]["unemployment"]);
-		    output[country]["population"] = parseFloat(data[i][selectedYear]["population"]);
-		    output[country]["hoverevent"] = data[i][selectedYear]["hoverevent"];
+		    output[country]["unemployment"] = parseFloat(data[i][year]["unemployment"]);
+		    output[country]["hoverevent"] = data[i][year]["hoverevent"];
 		}
 	}
 	return output;

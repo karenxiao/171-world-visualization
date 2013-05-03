@@ -49,13 +49,16 @@ function eventClear()
 	$('#graph-config').css('visibility', 'visible')
 
 	renderMap("normal", null);
-	for (var i = 0; i < radios.length; i++) 
+	for (var i = 0; i < events.length; i++) 
 	{
-		radios[i].checked = false;
+		events[i].checked = false;
 	}
 	document.getElementById('year').value = 1995;
 	document.getElementById('year-display').innerHTML = 1995;
 	$('#event-descriptions').html("");
+
+	graph("normal", "USA", null);
+
 }
 
 

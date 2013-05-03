@@ -81,8 +81,18 @@ function renderMap(state, event)
   });
 
   map.$el.bind("map-mouseover", function(e, data) {
-    $("#event-country-descriptions").html(data.hoverinfo);
-    //alert(data.hoverinfo);
+    if (data.data.name == undefined || data.data.hoverevent == "")
+    {
+      $("#event-country-descriptions").html("");
+    }
+    else
+    {
+      $("#event-country-descriptions").html("<b>Role of: " + data.data.name + "</b><br>" + data.data.hoverevent);
+    }
+  });
+
+  map.$el.bind("map-mouseout", function(e, data) {
+    $("#event-country-descriptions").html("");
   });
 
 }

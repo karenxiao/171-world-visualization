@@ -16,7 +16,11 @@ var colors = {'one': '#EFEBD6','two': '#F5CBAE','three': '#EBA988','four': '#E08
 $('#select-filter').change(function() {
   if (state == "filtered") 
   {
-  graph("filtered", currentCountry, event);     
+    graph("filtered", currentCountry, event);     
+  }
+  else 
+  {
+    graph("normal", currentCountry, event);
   }
 });
 
@@ -53,7 +57,7 @@ function graph(state, country, event)
 
   // get year selected
   var selectedYear = document.getElementById('year').value;
-  selectedYear = d3.time.format("%Y").parse(selectedYear.toString());
+  formattedYear = d3.time.format("%Y").parse(selectedYear.toString());
 
   // get filter selected
   var radios = document.getElementsByName('filter');
@@ -61,10 +65,15 @@ function graph(state, country, event)
   {
       if (radios[i].checked) 
       {
-        var filter = radios[i].value.toString();
+        filter = radios[i].value.toString();
       }
   }
 
+  if (state == "filtered")
+  {
+    filter = "gdp";
+  }
+  
   var points = generatePoints(country, filter);
 
   $("#graph-warning").html("");
@@ -96,15 +105,10 @@ function graph(state, country, event)
   x.domain(d3.extent(points, function(d) { return d["year"]; }));
   y.domain(d3.extent(points, function(d) { return d[filter]; }));
 
-  if (state == "filtered" && filter == "gdp")
+  if (state == "filtered")
   {
     x.domain(d3.extent(points, function(d) { return d["year"]; }));
     y.domain([100, 40000]);
-  }
-  else if (state == "filtered" && filter == "unemployment")
-  {
-    x.domain(d3.extent(points, function(d) { return d["year"]; }));
-    y.domain([1, 2]);
   }
 
   var div = d3.select("body").append("div")   
@@ -137,7 +141,7 @@ function graph(state, country, event)
   // draw lines
   if (state == "normal")
   {
-    var output = generateOutput(1995);
+    var output = generateOutput(selectedYear);
     name = output[country]["name"];
     color =  output[country]["fillKey"]
     document.getElementById('graph-title').innerHTML = "Data from years 1995-2010: " + name;
@@ -148,7 +152,7 @@ function graph(state, country, event)
     x.domain(d3.extent(points, function(d) { return d["year"]; }));
     y.domain([100, 110000]);
 
-    var output = generateFilteredOutput(1995, event);
+    var output = generateFilteredOutput(selectedYear, event);
     for (country in output)
     {
       name = output[country]["name"];
