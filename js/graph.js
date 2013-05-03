@@ -7,11 +7,19 @@
 * creates a line graph using D3
 **************************************************************/
 
+var state = "normal";
 var graphElement = document.getElementById('graph');
 var child = document.getElementById('graph-child');
-$('#select-filter').change(function() { graph("normal", currentCountry); });
-var graphLabels = {"gdp": "GDP per capita (USD)", "unemployment": "Unemployment Rate", "population": "Population"};
+var graphLabels = {"gdp": "GDP per capita (USD)", "unemployment": "Unemployment Rate (%)"};
 var colors = {'one': '#EFEBD6','two': '#F5CBAE','three': '#EBA988','four': '#E08465','five': '#D65D45','six': '#CC3527','seven': '#640A0A'};
+
+$('#select-filter').change(function() {
+  if (state == "filtered") 
+  {
+  graph("filtered", currentCountry, event);     
+  }
+});
+
 
 /***********************
 * generatePoints()
@@ -25,7 +33,7 @@ function generatePoints(country, filter)
     var output = generateOutput(1995+i);
 
     year = 1995+i;
-    points[i] = {"year": d3.time.format("%Y").parse(year.toString()), "yearnum": i, "gdp": output[country]["gdp"], "unemployment": output[country]["unemployment"], "population": output[country]["population"]};
+    points[i] = {"year": d3.time.format("%Y").parse(year.toString()), "gdp": output[country]["gdp"], "unemployment": output[country]["unemployment"]};
   } 
   return points;
 }
@@ -59,8 +67,15 @@ function graph(state, country, event)
 
   var points = generatePoints(country, filter);
 
+  $("#graph-warning").html("");
+
+  if (isNaN(points[0][filter]))
+  {
+    $("#graph-warning").html("Missing data. Please select another country.");
+  }
+
   // render graph
-  var margin = {top: 20, right: 20, bottom: 20, left: 80},
+  var margin = {top: 20, right: 20, bottom: 40, left: 80},
     width = 800 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
@@ -81,10 +96,15 @@ function graph(state, country, event)
   x.domain(d3.extent(points, function(d) { return d["year"]; }));
   y.domain(d3.extent(points, function(d) { return d[filter]; }));
 
-  if (state == "filtered")
+  if (state == "filtered" && filter == "gdp")
   {
     x.domain(d3.extent(points, function(d) { return d["year"]; }));
     y.domain([100, 40000]);
+  }
+  else if (state == "filtered" && filter == "unemployment")
+  {
+    x.domain(d3.extent(points, function(d) { return d["year"]; }));
+    y.domain([1, 2]);
   }
 
   var div = d3.select("body").append("div")   
@@ -128,7 +148,7 @@ function graph(state, country, event)
     x.domain(d3.extent(points, function(d) { return d["year"]; }));
     y.domain([100, 110000]);
 
-    var output = generateFilteredOutput(year, event);
+    var output = generateFilteredOutput(1995, event);
     for (country in output)
     {
       name = output[country]["name"];
@@ -136,19 +156,8 @@ function graph(state, country, event)
       document.getElementById('graph-title').innerHTML = "Data from years 1995-2010";
       points = generatePoints(country, filter);
       drawLine(points, filter, svg, div, x, y, name, color);
-    }
-    
+    } 
   }
-  
-    // svg.selectAll("circle")
-    //   .data(points)
-    //   .enter()
-    //   .append("circle")
-    //   .attr("cx", function(d) { return x(d["year"]); })
-    //   .attr("cy", function(d) { return y(d[filter]); })
-    //   .attr("r", 5)
-    //   .on("click", function(d) { displayEvent(d["year"]); });
-
 }
 
 function drawLine(points, filter, svg, div, x, y, name, color)
@@ -173,10 +182,5 @@ function drawLine(points, filter, svg, div, x, y, name, color)
       div.style("opacity", 0);
       }) 
 }
-
-// function displayEvent(year)
-// {
-//   return;
-// }
 
 

@@ -54,7 +54,7 @@ function renderMap(state, event)
       highlightBorderColor: '#1C1CFF',
       highlightFillColor: '#3B63F3',
       highlightOnHover: true,
-      popupTemplate: _.template('<div class="hoverinfo"> <strong><%= geography.properties.name %></strong> <% if (data.gdp) { %><hr/>  GDP per capita (USD): <%= data.gdp %> <% } %> <% if (data.unemployment) { %><hr/>  Unemployment Rate: <%= data.unemployment %> <% } %> </div>')
+      popupTemplate: _.template('<div class="hoverinfo"> <strong><%= geography.properties.name %></strong> <% if (data.gdp) { %><hr/>  GDP per capita (USD): <%= data.gdp %> <% } %> <% if (data.unemployment) { %><hr/>  Unemployment Rate: <%= data.unemployment %> <% } %></div>')
     },
     
     fills: 
@@ -78,6 +78,11 @@ function renderMap(state, event)
     // data.geography corresponds to the item in the geography json.
     currentCountry = data.geography.id;
     graph("normal", currentCountry);
+  });
+
+  map.$el.bind("map-mouseover", function(e, data) {
+    $("#event-country-descriptions").html(data.hoverinfo);
+    //alert(data.hoverinfo);
   });
 
 }

@@ -7,6 +7,7 @@
 * changes map and graph based on event
 **************************************************************/
 
+var event;
 var eventYears = {"1998event": 1998, "2000event": 2000, "2001event": 2001, "2002event": 2002, "2009event": 2009};
 var eventDescriptions = {
 	"1998event": "<b>1998: Aftermath of the Asian Tiger Crisis</b><br>Asian Tigers are a series of countries in eastern and southeastern Asia who grew economically very quickly through the late 1990s, and then suffered from a financial crisis in 1997. The aftermath for these countries and many close trading partners was that of economic decline.",
@@ -17,16 +18,20 @@ var eventDescriptions = {
 };
 
 $('#select-event').change(function() { eventChange(); });
-var radios = document.getElementsByName('event');
+var events = document.getElementsByName('event');
 
 function eventChange()
 {
+	state = "filtered";
+
+	$('#graph-config').css('visibility', 'hidden');
+
 	// get event(s) selected
-	for (var i = 0, length = radios.length; i < length; i++) 
+	for (var i = 0, length = events.length; i < length; i++) 
 	{
-		if (radios[i].checked) 
+		if (events[i].checked) 
 	    {
-	      var event = radios[i].value.toString();
+	      event = events[i].value.toString();
 	      renderMap("filtered", event);
 	      graph("filtered", "USA", event);
 	    }
@@ -39,6 +44,10 @@ function eventChange()
 
 function eventClear()
 {
+	state = "normal";
+
+	$('#graph-config').css('visibility', 'visible')
+
 	renderMap("normal", null);
 	for (var i = 0; i < radios.length; i++) 
 	{

@@ -23,13 +23,11 @@ for (var i = 0; i < numCountries; i++)
     data[i] = new Array();
     data[i]["country"] = lines[i*numYears+1][0];
     data[i]["code"] = lines[i*numYears+1][12];
-    //data[i]["gdp"] = lines[i*numYears+1][2];
-    //data[i]["unemployment"] = lines[i*numYears+1][3];
 
     for (var year = 0; year < numYears; year++)
     {
         data[i][1995+year] = new Array();
-        for (var j = 2; j < lines[0].length-1; j++)
+        for (var j = 2; j < lines[0].length; j++)
         {
             var key = lines[0][j];
             var value = lines[i*numYears+year+1][j];
