@@ -9,8 +9,10 @@
 
 var graphElement = document.getElementById('graph');
 var child = document.getElementById('graph-child');
-$('#select-filter').change(function() { graph(currentCountry); });
+$('#select-filter').change(function() { graph("normal", currentCountry); });
 var graphLabels = {"gdp": "GDP per capita (USD)", "unemployment": "Unemployment Rate", "population": "Population"};
+var colors = {'one': '#EFEBD6','two': '#F5CBAE','three': '#EBA988','four': '#E08465','five': '#D65D45','six': '#CC3527','seven': '#640A0A'};
+
 /***********************
 * generatePoints()
 * generates data points for country selected
@@ -79,6 +81,12 @@ function graph(state, country, event)
   x.domain(d3.extent(points, function(d) { return d["year"]; }));
   y.domain(d3.extent(points, function(d) { return d[filter]; }));
 
+  if (state == "filtered")
+  {
+    x.domain(d3.extent(points, function(d) { return d["year"]; }));
+    y.domain([100, 40000]);
+  }
+
   var div = d3.select("body").append("div")   
     .attr("class", "tooltip")               
     .style("opacity", 0);
@@ -106,17 +114,29 @@ function graph(state, country, event)
         .style("text-anchor", "end")
         .text(graphLabels[filter]);
 
-  // populate data
+  // draw lines
   if (state == "normal")
   {
-    var output = generateOutput(selectedYear);
-    var countryName = output[country]["name"]
-    document.getElementById('graph-title').innerHTML = "Data from years 1995-2010: " + countryName;
-    drawLine(points, filter, svg, div, x, y, countryName);
+    var output = generateOutput(1995);
+    name = output[country]["name"];
+    color =  output[country]["fillKey"]
+    document.getElementById('graph-title').innerHTML = "Data from years 1995-2010: " + name;
+    drawLine(points, filter, svg, div, x, y, name, color);
   }
   else if (state == "filtered")
   {
-    output = generateFilteredOutput(year, event);
+    x.domain(d3.extent(points, function(d) { return d["year"]; }));
+    y.domain([100, 110000]);
+
+    var output = generateFilteredOutput(year, event);
+    for (country in output)
+    {
+      name = output[country]["name"];
+      color = output[country]["fillKey"];
+      document.getElementById('graph-title').innerHTML = "Data from years 1995-2010";
+      points = generatePoints(country, filter);
+      drawLine(points, filter, svg, div, x, y, name, color);
+    }
     
   }
   
@@ -131,7 +151,7 @@ function graph(state, country, event)
 
 }
 
-function drawLine(points, filter, svg, div, x, y, countryName)
+function drawLine(points, filter, svg, div, x, y, name, color)
 {
 
   var line = d3.svg.line()
@@ -142,9 +162,10 @@ function drawLine(points, filter, svg, div, x, y, countryName)
     .datum(points)
     .attr("class", "line")
     .attr("d", line)
+    .style("stroke", colors[color])
     .on("mouseover", function(d) {      
       div.style("opacity", .9);      
-      div.html(countryName)  
+      div.html(name)  
          .style("left", (d3.event.pageX) + "px")     
          .style("top", (d3.event.pageY - 28) + "px");    
       })                  
