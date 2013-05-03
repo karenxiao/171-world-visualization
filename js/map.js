@@ -77,7 +77,7 @@ function renderMap(state, event)
     // data.data corresponds to the items you passed into the data param
     // data.geography corresponds to the item in the geography json.
     currentCountry = data.geography.id;
-    graph(currentCountry);
+    graph("normal", currentCountry);
   });
 
 }

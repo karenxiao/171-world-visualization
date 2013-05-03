@@ -28,6 +28,7 @@ function eventChange()
 	    {
 	      var event = radios[i].value.toString();
 	      renderMap("filtered", event);
+	      graph("filtered", "USA", event);
 	    }
 	}
 	document.getElementById('year').value = eventYears[event];
@@ -45,4 +46,8 @@ function eventClear()
 	}
 	document.getElementById('year').value = 1995;
 	document.getElementById('year-display').innerHTML = 1995;
+	$('#event-descriptions').html("");
 }
+
+
+

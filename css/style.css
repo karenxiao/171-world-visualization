@@ -112,13 +112,12 @@ a
 div.tooltip {   
   position: absolute;           
   text-align: center;           
-  width: 60px;                  
-  height: 28px;                 
+  height: 20px;                 
   padding: 2px;             
-  font: 12px sans-serif;        
-  background: blue;   
-  border: 0px;      
-  border-radius: 8px;           
+  font: 14px 'Century Gothic', sans-serif;        
+  background: white;   
+  border: 2px;  
+  border-color: gray;    
   pointer-events: none;         
 }
 

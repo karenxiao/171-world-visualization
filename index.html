@@ -34,7 +34,7 @@
                 <div id="map" data-intro='Click on individual nations to see more information below about these countries. Scroll over individual nations to see data for particular years.' data-step='3'><div id="child"></div></div>  
             </div>
             <div id="top-right">
-                <div id="events">
+                <div id="events" data-intro='Click on events to see the changes in largely affected countries' data-step='5'>
                     <div class="visualization-title">Worldwide Events</div><br><br>
                     <form id="select-event">
                         <input type="radio" name="event" value="1998event">1998: Aftermath of the Asian Tiger Crisis<br>
@@ -3009,7 +3009,7 @@ ZIMBABWE,2010,591,,,,,,,,,,ZWE,,2010 ZWE,0,0,0,0,0,
         <script> 
             introJs().start();
             renderMap("normal", null);
-            graph("USA", "gdp");
+            graph("normal", "USA");
         </script> 
     </body>
 </html>

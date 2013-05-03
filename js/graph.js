@@ -33,7 +33,7 @@ function generatePoints(country, filter)
 * renders line graph from data
 ************************/
 
-function graph(country)
+function graph(state, country, event)
 {
   child = document.getElementById('graph-child');
   graphElement.removeChild(child);
@@ -43,7 +43,6 @@ function graph(country)
 
   // get year selected
   var selectedYear = document.getElementById('year').value;
-  var output = generateOutput(selectedYear);
   selectedYear = d3.time.format("%Y").parse(selectedYear.toString());
 
   // get filter selected
@@ -55,11 +54,8 @@ function graph(country)
         var filter = radios[i].value.toString();
       }
   }
-  var points = generatePoints(country, filter);
 
-  // render title
-  var countryName = output[country]["name"]
-  document.getElementById('graph-title').innerHTML = "Data from years 1995-2010: " + countryName;
+  var points = generatePoints(country, filter);
 
   // render graph
   var margin = {top: 20, right: 20, bottom: 20, left: 80},
@@ -86,7 +82,7 @@ function graph(country)
   var div = d3.select("body").append("div")   
     .attr("class", "tooltip")               
     .style("opacity", 0);
-    
+
   var svg = d3.select("#graph-child").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
@@ -110,8 +106,20 @@ function graph(country)
         .style("text-anchor", "end")
         .text(graphLabels[filter]);
 
-    drawLine(points, filter, svg, x, y, countryName);
-
+  // populate data
+  if (state == "normal")
+  {
+    var output = generateOutput(selectedYear);
+    var countryName = output[country]["name"]
+    document.getElementById('graph-title').innerHTML = "Data from years 1995-2010: " + countryName;
+    drawLine(points, filter, svg, div, x, y, countryName);
+  }
+  else if (state == "filtered")
+  {
+    output = generateFilteredOutput(year, event);
+    
+  }
+  
     // svg.selectAll("circle")
     //   .data(points)
     //   .enter()
@@ -123,7 +131,7 @@ function graph(country)
 
 }
 
-function drawLine(points, filter, svg, x, y, countryName)
+function drawLine(points, filter, svg, div, x, y, countryName)
 {
 
   var line = d3.svg.line()
@@ -135,17 +143,14 @@ function drawLine(points, filter, svg, x, y, countryName)
     .attr("class", "line")
     .attr("d", line)
     .on("mouseover", function(d) {      
-      div.transition()        
-          .duration(200)      
-          .style("opacity", .9);      
-      div .html(formatTime(d.date) + "<br/>"  + d.close)  
-          .style("left", (d3.event.pageX) + "px")     
-          .style("top", (d3.event.pageY - 28) + "px");    
+      div.style("opacity", .9);      
+      div.html(countryName)  
+         .style("left", (d3.event.pageX) + "px")     
+         .style("top", (d3.event.pageY - 28) + "px");    
       })                  
     .on("mouseout", function(d) {       
-      div.transition()        
-          .duration(500)      
-          .style("opacity", 0); 
+      div.style("opacity", 0);
+      }) 
 }
 
 // function displayEvent(year)
