@@ -58,7 +58,8 @@ function graph(country)
   var points = generatePoints(country, filter);
 
   // render title
-  document.getElementById('graph-title').innerHTML = "Data from years 1995-2010: " + output[country]["name"];
+  var countryName = output[country]["name"]
+  document.getElementById('graph-title').innerHTML = "Data from years 1995-2010: " + countryName;
 
   // render graph
   var margin = {top: 20, right: 20, bottom: 20, left: 80},
@@ -79,18 +80,18 @@ function graph(country)
     .scale(y)
     .orient("left");
 
-  var line = d3.svg.line()
-    .x(function(d) { return x(d["year"]); })
-    .y(function(d) { return y(d[filter]); });
+  x.domain(d3.extent(points, function(d) { return d["year"]; }));
+  y.domain(d3.extent(points, function(d) { return d[filter]; }));
 
+  var div = d3.select("body").append("div")   
+    .attr("class", "tooltip")               
+    .style("opacity", 0);
+    
   var svg = d3.select("#graph-child").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    x.domain(d3.extent(points, function(d) { return d["year"]; }));
-    y.domain(d3.extent(points, function(d) { return d[filter]; }));
 
     svg.append("g")
       .attr("class", "axis")
@@ -109,30 +110,47 @@ function graph(country)
         .style("text-anchor", "end")
         .text(graphLabels[filter]);
 
-    svg.append("path")
-      .datum(points)
-      .attr("class", "line")
-      .attr("d", line);
+    drawLine(points, filter, svg, x, y, countryName);
 
-    svg.selectAll("circle")
-      .data(points)
-      .enter()
-      .append("circle")
-      .attr("cx", function(d) { return x(d["year"]); })
-      .attr("cy", function(d) { return y(d[filter]); })
-      .attr("r", 5)
-      .on("click", function(d) { displayEvent(d["year"]); });
+    // svg.selectAll("circle")
+    //   .data(points)
+    //   .enter()
+    //   .append("circle")
+    //   .attr("cx", function(d) { return x(d["year"]); })
+    //   .attr("cy", function(d) { return y(d[filter]); })
+    //   .attr("r", 5)
+    //   .on("click", function(d) { displayEvent(d["year"]); });
 
 }
 
-function drawLine()
+function drawLine(points, filter, svg, x, y, countryName)
 {
-  
+
+  var line = d3.svg.line()
+    .x(function(d) { return x(d["year"]); })
+    .y(function(d) { return y(d[filter]); });
+
+  svg.append("path")
+    .datum(points)
+    .attr("class", "line")
+    .attr("d", line)
+    .on("mouseover", function(d) {      
+      div.transition()        
+          .duration(200)      
+          .style("opacity", .9);      
+      div .html(formatTime(d.date) + "<br/>"  + d.close)  
+          .style("left", (d3.event.pageX) + "px")     
+          .style("top", (d3.event.pageY - 28) + "px");    
+      })                  
+    .on("mouseout", function(d) {       
+      div.transition()        
+          .duration(500)      
+          .style("opacity", 0); 
 }
 
-function displayEvent(year)
-{
-  return;
-}
+// function displayEvent(year)
+// {
+//   return;
+// }
 
 
